@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Music_Website</title>
+    <link rel="stylesheet" href="music_app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Potta+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main_div">
+      
+      <div class="music">
+        <h2 id="title">Attack on Titan</h2>
+        <h3 id="songName">Gurren</h3>
+        <div class="img_container">
+          <img src="images/aot_song.jpg" alt="Loading">
+          <audio src="sounds/aot_song.mp3">
+            </audio>
+      </div>
+        <div class="music_controls">
+          <i class="fas fa-chevron-circle-left" id="previous" title="previous"></i>
+          <i class="fas fa-play-circle" id="play"></i>
+          <i class="fas fa-chevron-circle-right" id="next"></i>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript">
+  const music= document.querySelector("audio");
+  const play= document.getElementById("play");
+  const img= document.querySelector("img");
+  const title= document.getElementById("title");
+  const songName= document.getElementById("songName");
+  const previous= document.getElementById("previous");
+  const next= document.getElementById("next");
+
+  //creating array of objects to feed in song, name, and title
+  const songs = [
+    {
+      name: "aot_song",
+      title: "Attack on Titan",
+      songName: "Gurren",
+    },
+    {
+    name: "demonSlayer_song",
+    title: "Demon Slayer",
+    songName: "Gurenge",
+  },
+{
+  name: "mha_song",
+  title: "My Hero Academia",
+  songName: "The Day",
+},
+{
+  name: "naruto_song",
+  title: "Naruto",
+  songName: "Bluebird",
+},
+{
+  name: "tokyoGhoul_song",
+  title: "Tokyo Ghoul",
+  songName: "Unravel",
+},
+{
+  name : "killua_song",
+  title : "Hunter x Hunter",
+  songName : "Departure",
+},
+];
+
+
+  let isPlaying=false;
+
+    const playMusic = function() {
+    isPlaying=true;
+    music.play();
+    play.classList.replace("fa-play-circle", "fa-pause-circle");
+  };
+
+  const pauseMusic = function() {
+    isPlaying= false;
+    music.pause();
+    play.classList.replace("fa-pause-circle", "fa-play-circle");
+  };
+
+  play.addEventListener("click", function(){
+  if(isPlaying){
+    pauseMusic();
+  }
+  else{
+    playMusic();
+  }
+
+  //  isPlaying ? pauseMusic() : playMusic();
+  });
+
+  const musicChange = function(songs) {
+    title.textContent = songs.title;
+    songName.textContent = songs.songName;
+    music.src = "sounds/" + songs.name + ".mp3";
+    img.src = "images/" + songs.name + ".jpg";
+  };
+  //musicChange(songs[2]);
+  songIndex = 0;
+
+  const nextSong = function() {
+    songIndex = (songIndex + 1) % songs.length;
+    musicChange(songs[songIndex]);
+    playMusic();
+  };
+
+  const previousSong = function() {
+    songIndex = (songIndex - 1 + songs.length) % songs.length;
+    musicChange(songs[songIndex]);
+    playMusic();
+  };
+  next.addEventListener("click", nextSong);
+  previous.addEventListener("click", previousSong);
+  </script>
+  </body>
+</html>

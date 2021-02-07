@@ -1,0 +1,73 @@
+body , html{
+  height: 100%;
+  }
+
+.main_div{
+width: 100%;
+height: 100%;
+background-image: url("images/musicbg.jpg");
+background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+display: grid;
+place-items: center;
+
+}
+
+.music{
+  width: 18rem;
+  height: 32rem;
+  background-color: #16213e;
+  border-radius: 2rem;
+  box-shadow: 0 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+
+}
+
+.music #title{
+  font-family: 'Potta One', cursive;
+  color: #c4fb6d
+}
+
+#songName{
+  font-family: 'Pacifico', cursive;
+  color: #bac7a7;
+  font-weight: 300;
+  font-size: 1.4rem;
+}
+
+.img_container{
+  height: 250px;
+  width: 250px;
+  margin: auto;
+
+}
+img{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.music_controls{
+  width: 12rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 3rem;
+
+
+}
+.music_controls .fas{
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.music_controls #play:hover{
+color: #6f9a8d;
+}
+
+.music_controls .fas:hover{
+  color: grey;
+}
