@@ -3,7 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
-    <title>Music_Website</title>
+    <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <title>Anime Play⚡</title>
     <link rel="stylesheet" href="music_app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -12,37 +20,53 @@
   </head>
   <body>
     <div class="main_div">
-      
       <div class="music">
         <h2 id="title">Attack on Titan</h2>
-        <h3 id="songName">Gurren</h3>
+        <h3 id="songName">Guren no Yumiya</h3>
         <div class="img_container">
           <img src="images/aot_song.jpg" alt="Loading">
+          <input type="range" id="duration_slider" max="100" value="0" onchange="change_duration()">
           <audio src="sounds/aot_song.mp3">
             </audio>
-      </div>
+        </div>
+      
         <div class="music_controls">
           <i class="fas fa-chevron-circle-left" id="previous" title="previous"></i>
           <i class="fas fa-play-circle" id="play"></i>
           <i class="fas fa-chevron-circle-right" id="next"></i>
+          
         </div>
       </div>
     </div>
+
+ 
+
+
+
+
+
+
+
+
   <script type="text/javascript">
   const music= document.querySelector("audio");
   const play= document.getElementById("play");
   const img= document.querySelector("img");
   const title= document.getElementById("title");
   const songName= document.getElementById("songName");
+  let slider = document.querySelector('#duration_slider')
+  let show_duration = document.querySelector('#show_duration');
   const previous= document.getElementById("previous");
   const next= document.getElementById("next");
+  let timer;
+  
 
   //creating array of objects to feed in song, name, and title
   const songs = [
     {
       name: "aot_song",
       title: "Attack on Titan",
-      songName: "Gurren",
+      songName: "Guren no Yumiya",
     },
     {
     name: "demonSlayer_song",
@@ -68,6 +92,36 @@
   name : "killua_song",
   title : "Hunter x Hunter",
   songName : "Departure",
+},
+{
+  name : "blackClover_song",
+  title : "Black Clover",
+  songName : "Black Catcher",
+},
+{
+  name : "jjk_song",
+  title : "Jujutsu Kaisen",
+  songName : "Vivid Vice",
+},
+{
+  name : "fairytail_song",
+  title : "Fairy Tail",
+  songName : "Snow Fairy",
+},
+{
+  name : "codeGeass_song",
+  title : "Code Geass",
+  songName : "Colors",
+},
+{
+  name : "onePiece_song",
+  title : "One Piece",
+  songName : "Fight Together",
+},
+{
+  name : "7ds_song",
+  title : "Seven Deadly Sins",
+  songName : "Netsujou no Spectrum",
 },
 ];
 
@@ -102,6 +156,9 @@
     songName.textContent = songs.songName;
     music.src = "sounds/" + songs.name + ".mp3";
     img.src = "images/" + songs.name + ".jpg";
+    
+
+    timer = setInterval(range_slider , 1000);
   };
   //musicChange(songs[2]);
   songIndex = 0;
@@ -119,6 +176,21 @@
   };
   next.addEventListener("click", nextSong);
   previous.addEventListener("click", previousSong);
+
+  // To change the duration of music throgh a cursor automatically
+
+  function change_duration() {
+    slider_position= music.duration * (slider.value / 100);
+    music.currentTime = slider_position;
+  }
+  function range_slider() {
+    let position = 0;
+
+    if(!isNaN(music.duration)){
+      position = music.currentTime * (100 / music.duration);
+      slider.value = position;
+    }
+  }
   </script>
   </body>
 </html>
